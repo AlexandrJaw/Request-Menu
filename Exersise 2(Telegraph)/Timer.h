@@ -38,3 +38,9 @@ public:
 		return getMinutes(mil) / 60;
 	}
 };
+
+void sleep(millis mil)
+{
+	Timer time;
+	while(time.getElapsedTime() < mil) {}
+}
