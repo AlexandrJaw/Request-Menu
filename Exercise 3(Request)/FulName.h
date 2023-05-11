@@ -14,5 +14,12 @@ public:
 		out << name.m_firstName << '\t' << name.m_lastName;
 		return out;
 	}
+	friend std::istream& operator>>(std::istream &in, FullName &name)
+	{
+		in.clear();
+		in.ignore(32000, '\n');
+		std::getline(in, name.m_firstName);
+		std::getline(in, name.m_lastName);
+	}
 };
 
