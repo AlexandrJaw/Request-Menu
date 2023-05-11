@@ -12,7 +12,10 @@ private:
 	int m_week = 0;
 	int m_month = 0;
 	int m_year = 0;
-	
+
+	const int months2Days();
+	const int weeks2Days();
+	const int years2Days();
 public:
 	Date(const std::string &date);
 	
@@ -23,9 +26,10 @@ public:
 
 	const int getAllDay();
 	const int getAllWeek();
+	const int getAllMonth();
 	const int getAllYear();
 
 	friend std::ostream& operator<<(std::ostream &out, const Date &date);
-	friend const int daysInMonth(const Date &month);
+	
 };
 

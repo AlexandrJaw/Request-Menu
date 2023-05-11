@@ -27,17 +27,43 @@ std::ostream& operator<<(std::ostream &out, const Date &date)
 
 const int Date::getAllDay()
 {
-	return m_day + m_month;
+	return m_day + months2Days() + weeks2Days() + years2Days();
 }
 
-const int daysInMonth(const Date &date)
+const int Date::getAllWeek()
 {
-	if (date.m_month % 2 == 1)
+	return round(m_week + (m_day + months2Days() + years2Days()) / 7.0);
+}
+
+const int Date::getAllMonth() // Приблизительный расчет
+{
+	return round(m_month + (m_day + weeks2Days() + years2Days()) / 30.0);
+}
+
+const int Date::getAllYear()
+{
+	return round(m_year + (m_day + weeks2Days() + months2Days()) 
+		/ ((m_year % 4 == 0) ? 366.0 : 365.0));
+}
+
+const int Date::months2Days()
+{
+	if (m_month % 2 == 1)
 		return 31;
-	else if (date.m_month != 2)
+	else if (m_month != 2)
 		return 30;
-	else if (date.m_year % 4 == 0)
+	else if (m_year % 4 == 0)
 		return 29;
 	else
 		return 28;
+}
+
+const int Date::weeks2Days()
+{
+	return m_week * 7;
+}
+
+const int Date::years2Days()
+{
+	return m_year * ((m_year % 4 == 0) ? 366 : 365);
 }
