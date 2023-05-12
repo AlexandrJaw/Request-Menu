@@ -130,6 +130,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddFieldMenu.h" />
     <ClInclude Include="AMenuField.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="FulName.h" />

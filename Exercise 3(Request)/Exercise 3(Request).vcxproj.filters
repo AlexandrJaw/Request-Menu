@@ -5,47 +5,58 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Файлы заголовков">
+    <Filter Include="Классы">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Файлы ресурсов">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Классы\Menu">
+      <UniqueIdentifier>{d83d02d4-5fdd-4dfd-b0a4-34388ed597ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Классы\Menu\MenuField">
+      <UniqueIdentifier>{ccf9bd69-4f6e-4264-ba62-7c5bd6a7c3fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Классы\Date">
+      <UniqueIdentifier>{b879156b-d38b-4171-a60b-38751dcc114f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Классы\Request">
+      <UniqueIdentifier>{5d2ccb22-ef05-4582-b276-339ded8920ea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Date.cpp">
-      <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
-    <ClCompile Include="Request.cpp">
-      <Filter>Файлы ресурсов</Filter>
+    <ClCompile Include="AMenuField.cpp">
+      <Filter>Классы\Menu\MenuField</Filter>
     </ClCompile>
     <ClCompile Include="Menu.cpp">
-      <Filter>Файлы ресурсов</Filter>
+      <Filter>Классы\Menu</Filter>
     </ClCompile>
-    <ClCompile Include="AMenuField.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="Date.cpp">
+      <Filter>Классы\Date</Filter>
+    </ClCompile>
+    <ClCompile Include="Request.cpp">
+      <Filter>Классы\Request</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Request.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Date.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="FulName.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Классы</Filter>
     </ClInclude>
     <ClInclude Include="AMenuField.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Классы\Menu\MenuField</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Классы\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Date.h">
+      <Filter>Классы\Date</Filter>
+    </ClInclude>
+    <ClInclude Include="Request.h">
+      <Filter>Классы\Request</Filter>
+    </ClInclude>
+    <ClInclude Include="AddFieldMenu.h">
+      <Filter>Классы</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
