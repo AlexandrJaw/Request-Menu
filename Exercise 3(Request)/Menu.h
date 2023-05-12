@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <iostream>
 
 template<class T>
 class Menu
@@ -13,16 +14,19 @@ private:
 	menu_ptr_t m_subMenu;
 	T m_data;
 public:
-	Menu(std::string &name, menu_ptr_t subMenu = 0) : m_name(name) {}
+	Menu(std::string &name = "Menu", menu_ptr_t &subMenu = 0) : m_name(name) {}
 
-	void createSubMenu(std::unique_ptr<Menu> subMenu) { m_subMenu = subMenu; }
+	void createSubMenu(std::unique_ptr<Menu> subMenu) { m_subMenu.push_back(subMenu); }
 
 	void addField();
+
 	void run()
 	{
 		while (true)
 		{
+			std::cout << m_name;
 
+			system("cls");
 		}
 	}
 };

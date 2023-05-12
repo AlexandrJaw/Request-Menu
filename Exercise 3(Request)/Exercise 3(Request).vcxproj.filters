@@ -27,6 +27,9 @@
     <ClCompile Include="Menu.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
+    <ClCompile Include="AMenuField.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Request.h">
@@ -39,6 +42,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="AMenuField.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
