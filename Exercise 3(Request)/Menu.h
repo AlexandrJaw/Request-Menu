@@ -3,22 +3,20 @@
 #include <vector>
 #include <memory>
 #include <iostream>
+#include "MenuField.h"
 
-template<class T>
 class Menu
 {
-	using menu_ptr_t = std::vector<std::unique_ptr<Menu>>;
+	using menu_ptr_t = std::vector<std::unique_ptr<MenuField>>;
 private:
 	std::string m_name;
-	std::unique_ptr<Menu> m_topMenu;
-	menu_ptr_t m_subMenu;
-	T m_data;
+	std::unique_ptr<Menu> m_parent = nullptr;
+	menu_ptr_t m_fields;
+	
 public:
-	Menu(std::string &name = "Menu", menu_ptr_t &subMenu = 0) : m_name(name) {}
+	Menu(const std::string &name = "Menu") : m_name(name) {}
 
-	void createSubMenu(std::unique_ptr<Menu> subMenu) { m_subMenu.push_back(subMenu); }
-
-	void addField();
+	void addMenuField(std::unique_ptr<MenuField> &field) { m_fields.push_back(field); }
 
 	void run()
 	{
