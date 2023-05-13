@@ -7,12 +7,13 @@
 
 class Menu
 {
-	using menu_ptr_t = std::vector<std::unique_ptr<MenuField>>;
+	using VecPtrField_t = std::vector<std::unique_ptr<MenuField>>;
 private:
 	std::string m_name;
-	std::unique_ptr<Menu> m_parent = nullptr;
-	menu_ptr_t m_fields;
+	std::shared_ptr<Menu> m_parent = nullptr;
+	VecPtrField_t m_fields;
 	
+	void setName2centr();
 public:
 	Menu(const std::string &name = "Menu") : m_name(name) {}
 
@@ -21,6 +22,9 @@ public:
 	void setName(const std::string &name) { m_name = name; }
 
 	void run();
+
+	void addSubMenu(Menu &submenu);
+	void setParent(std::shared_ptr<Menu> &&parent) { m_parent = parent; }
 	
 };
 
