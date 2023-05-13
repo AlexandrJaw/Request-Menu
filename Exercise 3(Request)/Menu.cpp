@@ -33,8 +33,11 @@ void Menu::run()
 
 void Menu::addSubMenu(Menu &submenu)
 {
-	MenuField submenuField(submenu.m_name, []() {});
 	submenu.setParent(std::make_shared<Menu>(this));
+	MenuField submenuField(submenu.m_name, []() {});
+	submenuField.setAction([&]() { submenu.run(); });
+	auto submenuFieldPtr{ std::make_unique<MenuField>(submenuField) };
+	m_fields.push_back(submenuFieldPtr);
 }
 
 void Menu::setName2centr()
