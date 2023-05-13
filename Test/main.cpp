@@ -1,12 +1,19 @@
-#include <windows.h>
+#include <Windows.h>
+#include <iostream>
 
-#define LENGTH 1000
-#define WIDTH 1000
-int main() {
-	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-	SMALL_RECT windowSize = { 0, 0, WIDTH - 1, LENGTH - 1 }; // ширина = 80, высота = 25
-	SetConsoleWindowInfo(consoleHandle, TRUE, &windowSize);
-	COORD bufferSize = { WIDTH, LENGTH };
-	SetConsoleScreenBufferSize(consoleHandle, bufferSize);
-	return 0;
+int main()
+{
+	while (true)
+	{
+		HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+		CONSOLE_SCREEN_BUFFER_INFO bufferInfo;
+		GetConsoleScreenBufferInfo(consoleHandle, &bufferInfo);
+
+		int consoleWidth = bufferInfo.dwSize.X;
+		int consoleHeight = bufferInfo.dwSize.Y;
+
+		std::cout << "X: " << consoleWidth << std::endl;
+		std::cout << "Y: " << consoleHeight << std::endl;
+		system("cls");
+	}
 }
