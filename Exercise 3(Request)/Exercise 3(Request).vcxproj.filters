@@ -26,9 +26,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="AMenuField.cpp">
-      <Filter>Классы\Menu\MenuField</Filter>
-    </ClCompile>
     <ClCompile Include="Menu.cpp">
       <Filter>Классы\Menu</Filter>
     </ClCompile>
@@ -38,13 +35,13 @@
     <ClCompile Include="Request.cpp">
       <Filter>Классы\Request</Filter>
     </ClCompile>
+    <ClCompile Include="MenuField.cpp">
+      <Filter>Классы\Menu\MenuField</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FulName.h">
       <Filter>Классы</Filter>
-    </ClInclude>
-    <ClInclude Include="AMenuField.h">
-      <Filter>Классы\Menu\MenuField</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
       <Filter>Классы\Menu</Filter>
@@ -55,8 +52,8 @@
     <ClInclude Include="Request.h">
       <Filter>Классы\Request</Filter>
     </ClInclude>
-    <ClInclude Include="AddFieldMenu.h">
-      <Filter>Классы</Filter>
+    <ClInclude Include="MenuField.h">
+      <Filter>Классы\Menu\MenuField</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

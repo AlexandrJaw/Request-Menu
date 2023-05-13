@@ -123,15 +123,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AMenuField.cpp" />
+    <ClCompile Include="MenuField.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Request.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AddFieldMenu.h" />
-    <ClInclude Include="AMenuField.h" />
+    <ClInclude Include="MenuField.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="FulName.h" />
     <ClInclude Include="Menu.h" />
