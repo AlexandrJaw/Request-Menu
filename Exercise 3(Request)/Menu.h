@@ -17,15 +17,10 @@ public:
 	Menu(const std::string &name = "Menu") : m_name(name) {}
 
 	void addMenuField(std::unique_ptr<MenuField> &field) { m_fields.push_back(field); }
+	void removeMenuField(int index) { m_fields.erase(m_fields.begin() + index); }
+	void setName(const std::string &name) { m_name = name; }
 
-	void run()
-	{
-		while (true)
-		{
-			std::cout << m_name;
-
-			system("cls");
-		}
-	}
+	void run();
+	
 };
 
