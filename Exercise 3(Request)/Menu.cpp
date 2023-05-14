@@ -36,18 +36,18 @@ void Menu::run()
 			m_fields[index]->execute();
 		else
 			std::cout << "Invalid choice." << std::endl;
-		if (m_fields[index]->getName == "Quit")
+		if (m_fields[index]->getName() == "Quit")
 			break;
 	}
 }
 
-void Menu::addSubMenu(Menu &submenu)
+void Menu::addSubMenu(Menu &&submenu)
 {
-	submenu.setParent(std::make_shared<Menu>(this));
+	submenu.setParent(std::make_shared<Menu>(*this));
 	MenuField submenuField(submenu.m_name, []() {});
 	submenuField.setAction([&]() { submenu.run(); });
-	auto submenuFieldPtr{ std::make_unique<MenuField>(submenuField) };
-	m_fields.push_back(submenuFieldPtr);
+	auto submenuFieldPtr = std::make_unique<MenuField>(submenuField);
+	m_fields.push_back(std::move(submenuFieldPtr));
 }
 
 void Menu::setName2centr()

@@ -19,7 +19,7 @@ int main()
 
 	submenu.addMenuField(std::make_unique<MenuField>(suboption));
 
-	mainMenu.addSubMenu(submenu);
+	//mainMenu.addSubMenu(std::move(submenu));
 
 	mainMenu.run();
 
