@@ -3,31 +3,40 @@
 
 void Menu::run()
 {
+	MenuField outField;
+	if (m_parent == nullptr)
+	{
+		MenuField outField("Quit", []() { break; });
+	}
+	else
+	{
+		MenuField outField("Back", [&]() { m_parent->run(); });
+	}
+	this->addMenuField(std::make_unique<MenuField>(outField));
+
 	setName2centr();
+
 	while (true)
 	{
+		system("cls");
 		std::cout << m_name << std::endl;
 		for (int i(0); i < m_fields.size(); ++i)
 		{
 			std::cout << i << ". " << m_fields[i]->getName() << std::endl;
 		}
-		std::cout << "q. Quit" << std::endl;
-
+		
 		char choice;
 		std::cin.clear();
 		std::cin.ignore(1, '\n');
 		std::cin >> choice;
 
-		if (choice == 'q' || choice == 'Q')
-			break;
-
+		
 		int index = choice - '0';
 		if (index >= 0 && index < m_fields.size())
 			m_fields[index]->execute();
 		else
 			std::cout << "Invalid choice." << std::endl;
 
-		system("cls");
 	}
 }
 

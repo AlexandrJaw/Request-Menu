@@ -8,7 +8,7 @@ private:
 	std::string m_name;
 	std::function<void()> m_action;
 public:
-	MenuField(const std::string &name, std::function<void()> action) 
+	MenuField(const std::string &name = "", std::function<void()> action = []() {})
 		: m_name(name), m_action(action) {}
 
 	void setName(const std::string &name) { m_name = name; }

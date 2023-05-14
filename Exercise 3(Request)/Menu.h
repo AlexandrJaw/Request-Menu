@@ -17,7 +17,7 @@ private:
 public:
 	Menu(const std::string &name = "Menu") : m_name(name) {}
 
-	void addMenuField(std::unique_ptr<MenuField> &field) { m_fields.push_back(std::move(field)); }
+	void addMenuField(const std::unique_ptr<MenuField> &field) { m_fields.push_back(std::move(field)); }
 	void removeMenuField(int index) { m_fields.erase(m_fields.begin() + index); }
 	void setName(const std::string &name) { m_name = name; }
 
