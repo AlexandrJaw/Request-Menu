@@ -16,6 +16,8 @@ void Menu::run()
 
 	setName2centr();
 
+	//реализовать лямбда-функцию выхода и соответствено исправить ошибку
+
 	while (true)
 	{
 		system("cls");
