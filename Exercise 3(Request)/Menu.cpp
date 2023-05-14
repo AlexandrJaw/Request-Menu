@@ -6,13 +6,15 @@ void Menu::run()
 	MenuField outField;
 	if (m_parent == nullptr)
 	{
-		MenuField outField("Quit", []() {});
+		outField.setName("Quit");
+		outField.setAction([]() {});
 	}
 	else
 	{
-		MenuField outField("Back", [&]() { m_parent->run(); });
+		outField.setName("Back");
+		outField.setAction([&]() { m_parent->run(); });
 	}
-	this->addMenuField(std::make_unique<MenuField>(outField));
+	this->addMenuField(std::unique_ptr<MenuField>(&outField));
 
 	setName2centr();
 
@@ -43,7 +45,7 @@ void Menu::run()
 
 void Menu::addSubMenu(Menu &&submenu)
 {
-	submenu.setParent(std::make_shared<Menu>(*this));
+	submenu.setParent(std::shared_ptr<Menu>(this));
 	auto submenuFieldPtr = std::make_unique<MenuField>(submenu.m_name, []() {});
 	submenuFieldPtr->setAction([&]() { submenu.run(); });
 	m_fields.push_back(std::move(submenuFieldPtr));
