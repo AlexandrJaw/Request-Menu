@@ -44,9 +44,8 @@ void Menu::run()
 void Menu::addSubMenu(Menu &&submenu)
 {
 	submenu.setParent(std::make_shared<Menu>(*this));
-	MenuField submenuField(submenu.m_name, []() {});
-	submenuField.setAction([&]() { submenu.run(); });
-	auto submenuFieldPtr = std::make_unique<MenuField>(submenuField);
+	auto submenuFieldPtr = std::make_unique<MenuField>(submenu.m_name, []() {});
+	submenuFieldPtr->setAction([&]() { submenu.run(); });
 	m_fields.push_back(std::move(submenuFieldPtr));
 }
 
