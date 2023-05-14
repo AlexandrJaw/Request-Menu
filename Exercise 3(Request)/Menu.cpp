@@ -6,7 +6,7 @@ void Menu::run()
 	MenuField outField;
 	if (m_parent == nullptr)
 	{
-		MenuField outField("Quit", []() { break; });
+		MenuField outField("Quit", []() {});
 	}
 	else
 	{
@@ -15,8 +15,6 @@ void Menu::run()
 	this->addMenuField(std::make_unique<MenuField>(outField));
 
 	setName2centr();
-
-	//реализовать лямбда-функцию выхода и соответствено исправить ошибку
 
 	while (true)
 	{
@@ -38,7 +36,8 @@ void Menu::run()
 			m_fields[index]->execute();
 		else
 			std::cout << "Invalid choice." << std::endl;
-
+		if (m_fields[index]->getName == "Quit")
+			break;
 	}
 }
 
