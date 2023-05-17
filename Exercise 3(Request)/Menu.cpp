@@ -61,7 +61,10 @@ void Menu::setName2centr()
 	}
 	averageStr /= m_fields.size();
 	
-	size_t countOfIndent = averageStr - m_name.length() / 2;
+	int countOfIndent = averageStr - m_name.length() / 2;
+
+	if (countOfIndent <= 0)
+		return;
 
 	m_name.insert(m_name.begin(), countOfIndent, '-');
 	m_name.append(countOfIndent, '-');
