@@ -27,9 +27,7 @@ void Menu::run()
 			std::cout << i << ". " << m_fields[i]->getName() << std::endl;
 		}
 		
-		char choice;
-		std::cin.clear();
-		std::cin.ignore(1, '\n');
+		char choice = 0;
 		std::cin >> choice;
 
 		

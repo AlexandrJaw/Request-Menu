@@ -13,13 +13,13 @@ int main()
 	mainMenu.addMenuField(std::make_unique<MenuField>(option2));
 	mainMenu.addMenuField(std::make_unique<MenuField>(option3));
 
-	Menu submenu;
+	Menu submenu("Submenu");
 
-	MenuField suboption("sub", []() {});
+	MenuField suboption("suboption", []() {});
 
 	submenu.addMenuField(std::make_unique<MenuField>(suboption));
 
-	//mainMenu.addSubMenu(std::move(submenu));
+	mainMenu.addSubMenu(std::move(submenu));
 
 	mainMenu.run();
 
