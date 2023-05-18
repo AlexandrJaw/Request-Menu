@@ -10,7 +10,7 @@ class Menu : std::enable_shared_from_this<Menu>
 	using VecPtrField_t = std::vector<std::unique_ptr<MenuField>>;
 private:
 	std::string m_name;
-	std::shared_ptr<Menu> m_parent = nullptr;
+	Menu *m_parent = nullptr;
 	VecPtrField_t m_fields;
 	
 	void setName2centr();
@@ -28,8 +28,8 @@ public:
 
 	void run();
 
-	void addSubMenu(std::shared_ptr<Menu> &&submenu);
-	void setParent(std::shared_ptr<Menu> &&parent) { m_parent = parent; }
+	void addSubMenu(Menu &&submenu);
+	void setParent(Menu *parent) { m_parent = parent; }
 	~Menu() { std::cout << "Menu: "<< m_name << " is deleted" << std::endl; }
 };
 

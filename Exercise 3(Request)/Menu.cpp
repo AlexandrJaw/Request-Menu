@@ -41,11 +41,11 @@ void Menu::run()
 	}
 }
 
-void Menu::addSubMenu(std::shared_ptr<Menu> &&submenu)
+void Menu::addSubMenu(Menu &&submenu)
 {
-	submenu->setParent(shared_from_this());
-	auto submenuFieldPtr = std::make_unique<MenuField>(submenu->m_name, []() {});
-	submenuFieldPtr->setAction([&]() { submenu->run(); });
+	submenu.setParent(this);
+	auto submenuFieldPtr = std::make_unique<MenuField>(submenu.m_name, []() {});
+	submenuFieldPtr->setAction([&]() { submenu.run(); });
 	m_fields.push_back(std::move(submenuFieldPtr));
 }
 

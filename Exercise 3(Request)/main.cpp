@@ -16,11 +16,12 @@ int main()
 			mainMenu.addMenuField(std::make_unique<MenuField>(option2));
 			mainMenu.addMenuField(std::make_unique<MenuField>(option3));
 
-			auto submenu = std::make_shared<Menu>("Submenu");
+			//auto submenu = std::make_shared<Menu>("Submenu");
+			Menu submenu("Submenu");
 
 			MenuField suboption("suboption", []() {});
 
-			submenu->addMenuField(std::make_unique<MenuField>(suboption));
+			submenu.addMenuField(std::make_unique<MenuField>(suboption));
 
 			mainMenu.addSubMenu(std::move(submenu));
 
