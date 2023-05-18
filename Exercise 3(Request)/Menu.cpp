@@ -3,19 +3,22 @@
 
 void Menu::run()
 {
-	auto outField = std::make_unique<MenuField>();
-	if (m_parent == nullptr) 
+	if (isFirstRun)
 	{
-		outField->setName("Quit"); // Теперь что то не так со строкой
-		outField->setAction([]() {});
+		isFirstRun = false;
+		auto outField = std::make_unique<MenuField>();
+		if (m_parent == nullptr)
+		{
+			outField->setName("Quit");
+			outField->setAction([]() {});
+		}
+		else
+		{
+			outField->setName("Back");
+			outField->setAction([]() {});
+		}
+		this->addMenuField(std::move(outField));
 	}
-	else
-	{
-		outField->setName("Back");
-		outField->setAction([]() {});
-	}
-	this->addMenuField(std::move(outField));
-
 	setName2centr();
 
 	while (true)
@@ -32,12 +35,13 @@ void Menu::run()
 
 		
 		int index = choice - '0';
+		if (m_fields[index]->getName() == "Quit" || m_fields[index]->getName() == "Back")
+			break;
 		if (index >= 0 && index < m_fields.size())
 			m_fields[index]->execute();
 		else
 			std::cout << "Invalid choice." << std::endl;
-		if (m_fields[index]->getName() == "Quit" || m_fields[index]->getName() == "Back")
-			break;
+		
 	}
 }
 

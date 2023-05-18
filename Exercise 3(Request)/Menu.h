@@ -5,14 +5,15 @@
 #include <iostream>
 #include "MenuField.h"
 
-class Menu : std::enable_shared_from_this<Menu>
+class Menu
 {
 	using VecPtrField_t = std::vector<std::unique_ptr<MenuField>>;
 private:
 	std::string m_name;
 	Menu *m_parent = nullptr;
 	VecPtrField_t m_fields;
-	
+	bool isFirstRun = true;
+
 	void setName2centr();
 public:
 	Menu(const std::string &name = "Menu") : m_name(name) {}
