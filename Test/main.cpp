@@ -1,21 +1,20 @@
 #include <functional>
 #include <iostream>
 
-auto mylambda = [&](int i = 0) { std::cout << i << std::endl; };
 
-void exe()
+class Aaa
 {
-	mylambda();
-}
-
-void exe2()
-{
-	mylambda(1);
-}
+private:
+	int Bbb = 0;
+public:
+	void setBbb(const int &b) { Bbb = b; }
+};
 
 int main()
 {
-	exe();
-	exe2();
+	Aaa *ptr = new Aaa;
+
+	ptr->setBbb(6);
+
 	return 0;
 }

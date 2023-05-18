@@ -3,18 +3,18 @@
 
 void Menu::run()
 {
-	MenuField outField;
-	if (m_parent == nullptr)
+	std::unique_ptr<MenuField> outField; 
+	if (m_parent == nullptr) 
 	{
-		outField.setName("Quit");
-		outField.setAction([]() {});
+		outField->setName("Quit");
+		outField->setAction([]() {});
 	}
 	else
 	{
-		outField.setName("Back");
-		outField.setAction([&]() { m_parent->run(); });
+		outField->setName("Back");
+		outField->setAction([&]() { m_parent->run(); });
 	}
-	this->addMenuField(std::unique_ptr<MenuField>(&outField));
+	this->addMenuField(std::move(outField));
 
 	setName2centr();
 

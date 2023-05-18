@@ -3,25 +3,29 @@
 
 int main()
 {
-	Menu mainMenu;
+	{
+		Menu mainMenu;
 
-	MenuField option1("option 1", []() {});
-	MenuField option2("option 2", []() {});
-	MenuField option3("option 3", []() {});
+		MenuField option1("option 1", []() {});
+		MenuField option2("option 2", []() {});
+		MenuField option3("option 3", []() {});
 
-	mainMenu.addMenuField(std::make_unique<MenuField>(option1));
-	mainMenu.addMenuField(std::make_unique<MenuField>(option2));
-	mainMenu.addMenuField(std::make_unique<MenuField>(option3));
+		mainMenu.addMenuField(std::make_unique<MenuField>(option1));
+		mainMenu.addMenuField(std::make_unique<MenuField>(option2));
+		mainMenu.addMenuField(std::make_unique<MenuField>(option3));
 
-	Menu submenu("Submenu");
+		Menu submenu("Submenu");
 
-	MenuField suboption("suboption", []() {});
+		MenuField suboption("suboption", []() {});
 
-	submenu.addMenuField(std::make_unique<MenuField>(suboption));
+		submenu.addMenuField(std::make_unique<MenuField>(suboption));
 
-	mainMenu.addSubMenu(std::move(submenu));
+		mainMenu.addSubMenu(std::move(submenu));
 
-	mainMenu.run();
+		mainMenu.run();
+	}
+	// Исправить ошибку с удалением в деструкторе 
+	//уже удаленного объекта(скорее всего функтора)
 
 	getchar();
 	return 0;
