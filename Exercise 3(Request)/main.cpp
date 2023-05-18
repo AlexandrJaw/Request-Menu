@@ -8,13 +8,13 @@ int main()
 		{
 			Menu mainMenu;
 
-			MenuField option1("option 1", []() {});
-			MenuField option2("option 2", []() {});
-			MenuField option3("option 3", []() {});
+			auto option1 = std::make_unique <MenuField>("option 1", []() {});
+			auto option2 = std::make_unique <MenuField>("option 2", []() {});
+			auto option3 = std::make_unique <MenuField>("option 3", []() {});
 
-			mainMenu.addMenuField(std::make_unique<MenuField>(option1));
-			mainMenu.addMenuField(std::make_unique<MenuField>(option2));
-			mainMenu.addMenuField(std::make_unique<MenuField>(option3));
+			mainMenu.addMenuField(std::move(option1));
+			mainMenu.addMenuField(std::move(option2));
+			mainMenu.addMenuField(std::move(option3));
 
 			//auto submenu = std::make_shared<Menu>("Submenu");
 			Menu submenu("Submenu");
