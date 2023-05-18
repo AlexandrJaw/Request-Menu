@@ -31,6 +31,6 @@ public:
 
 	void addSubMenu(Menu &&submenu);
 	void setParent(Menu *parent) { m_parent = parent; }
-	~Menu() { std::cout << "Menu: "<< m_name << " is deleted" << std::endl; }
+	~Menu() {}
 };
 

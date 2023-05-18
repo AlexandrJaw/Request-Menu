@@ -16,9 +16,6 @@ public:
 	void setAction(const std::function<void()>& action) { m_action = action; }
 	const std::string& getName() const { return m_name; }
 	void execute() const { m_action(); }
-	~MenuField() 
-	{ 
-		std::cout << "MenuField: " << m_name << " is deleted" << std::endl;
-	}
+	~MenuField() {}
 };
 

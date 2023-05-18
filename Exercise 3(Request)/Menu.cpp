@@ -35,13 +35,17 @@ void Menu::run()
 
 		
 		int index = choice - '0';
-		if (m_fields[index]->getName() == "Quit" || m_fields[index]->getName() == "Back")
-			break;
+		
 		if (index >= 0 && index < m_fields.size())
+		{
 			m_fields[index]->execute();
+
+			if (m_fields[index]->getName() == "Quit" 
+				|| m_fields[index]->getName() == "Back")
+				break;
+		}
 		else
 			std::cout << "Invalid choice." << std::endl;
-		
 	}
 }
 
