@@ -12,7 +12,7 @@ void Menu::run()
 	else
 	{
 		outField->setName("Back");
-		outField->setAction([&]() { m_parent->run(); });
+		outField->setAction([]() {});
 	}
 	this->addMenuField(std::move(outField));
 
@@ -36,7 +36,7 @@ void Menu::run()
 			m_fields[index]->execute();
 		else
 			std::cout << "Invalid choice." << std::endl;
-		if (m_fields[index]->getName() == "Quit")
+		if (m_fields[index]->getName() == "Quit" || m_fields[index]->getName() == "Back")
 			break;
 	}
 }

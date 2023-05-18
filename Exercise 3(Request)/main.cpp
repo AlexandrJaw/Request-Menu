@@ -5,28 +5,28 @@ int main()
 {
 	try
 	{
-		{
-			Menu mainMenu;
+		
+		Menu mainMenu;
 
-			auto option1 = std::make_unique <MenuField>("option 1", []() {});
-			auto option2 = std::make_unique <MenuField>("option 2", []() {});
-			auto option3 = std::make_unique <MenuField>("option 3", []() {});
+		auto option1 = std::make_unique <MenuField>("option 1", []() {});
+		auto option2 = std::make_unique <MenuField>("option 2", []() {});
+		auto option3 = std::make_unique <MenuField>("option 3", []() {});
 
-			mainMenu.addMenuField(std::move(option1));
-			mainMenu.addMenuField(std::move(option2));
-			mainMenu.addMenuField(std::move(option3));
+		mainMenu.addMenuField(std::move(option1));
+		mainMenu.addMenuField(std::move(option2));
+		mainMenu.addMenuField(std::move(option3));
 
-			//auto submenu = std::make_shared<Menu>("Submenu");
-			Menu submenu("Submenu");
+		//auto submenu = std::make_shared<Menu>("Submenu");
+		Menu submenu("Submenu");
 
-			MenuField suboption("suboption", []() {});
+		auto suboption = std::make_unique<MenuField>("suboption", []() {});
 
-			submenu.addMenuField(std::make_unique<MenuField>(suboption));
+		submenu.addMenuField(std::move(suboption));
 
-			mainMenu.addSubMenu(std::move(submenu));
+		mainMenu.addSubMenu(std::move(submenu));
 
-			mainMenu.run();
-		}
+		mainMenu.run();
+		
 	}
 	catch (std::exception &excep)
 	{
