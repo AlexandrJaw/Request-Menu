@@ -3,10 +3,10 @@
 
 void Menu::run()
 {
-	std::unique_ptr<MenuField> outField; 
+	auto outField = std::make_unique<MenuField>();
 	if (m_parent == nullptr) 
 	{
-		outField->setName("Quit");
+		outField->setName("Quit"); // Теперь что то не так со строкой
 		outField->setAction([]() {});
 	}
 	else
@@ -41,11 +41,11 @@ void Menu::run()
 	}
 }
 
-void Menu::addSubMenu(Menu &&submenu)
+void Menu::addSubMenu(std::shared_ptr<Menu> &&submenu)
 {
-	submenu.setParent(std::shared_ptr<Menu>(this));
-	auto submenuFieldPtr = std::make_unique<MenuField>(submenu.m_name, []() {});
-	submenuFieldPtr->setAction([&]() { submenu.run(); });
+	submenu->setParent(shared_from_this());
+	auto submenuFieldPtr = std::make_unique<MenuField>(submenu->m_name, []() {});
+	submenuFieldPtr->setAction([&]() { submenu->run(); });
 	m_fields.push_back(std::move(submenuFieldPtr));
 }
 

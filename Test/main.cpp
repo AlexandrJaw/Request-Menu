@@ -1,20 +1,21 @@
 #include <functional>
 #include <iostream>
+#include <string>
+#include <memory>
 
-
-class Aaa
+class A
 {
 private:
-	int Bbb = 0;
+	std::string m_str = "";
 public:
-	void setBbb(const int &b) { Bbb = b; }
+	void setStr(const std::string &str) { m_str = str; }
 };
 
 int main()
 {
-	Aaa *ptr = new Aaa;
+	auto ptr = std::make_unique<A>();
 
-	ptr->setBbb(6);
+	ptr->setStr("str");
 
 	return 0;
 }
