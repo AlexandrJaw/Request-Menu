@@ -1,11 +1,14 @@
 #include <iostream>
 #include "Menu.h"
 #include <exception>
+#include <list>
+#include "Request.h"
 
 int main()
 {
 	try
 	{
+		std::list<Request> requestList;
 		
 		Menu mainMenu;
 

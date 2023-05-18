@@ -55,5 +55,8 @@
     <ClInclude Include="MenuField.h">
       <Filter>Классы\Menu\MenuField</Filter>
     </ClInclude>
+    <ClInclude Include="ReqList.h">
+      <Filter>Классы\Request</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -134,6 +134,7 @@
     <ClInclude Include="Date.h" />
     <ClInclude Include="FulName.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="ReqList.h" />
     <ClInclude Include="Request.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
