@@ -10,8 +10,8 @@ private:
 public:
 	void addRequest()
 	{
-		auto req = std::make_unique<Request>()
-		m_reqlist.push_back();
+		auto req = std::make_unique<Request>();
+		m_reqlist.push_back(std::move(req));
 	}
 	void deleteRequest(int index)
 	{
