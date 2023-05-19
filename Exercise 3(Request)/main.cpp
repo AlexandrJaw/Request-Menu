@@ -12,7 +12,7 @@ int main()
 		
 		Menu mainMenu;
 
-		auto option1 = std::make_unique <MenuField>("option 1", []() {});
+		auto option1 = std::make_unique <MenuField>("option 1", []() { system("pause"); });
 		auto option2 = std::make_unique <MenuField>("option 2", []() {});
 		auto option3 = std::make_unique <MenuField>("option 3", []() {});
 

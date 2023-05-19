@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include <assert.h>
+#include <algorithm>
 
 void Menu::run()
 {
@@ -38,11 +39,15 @@ void Menu::run()
 		
 		if (index >= 0 && index < m_fields.size())
 		{
-			m_fields[index]->execute();
-
-			if (m_fields[index]->getName() == "Quit" 
+			if (m_fields[index]->getName() == "Quit"
 				|| m_fields[index]->getName() == "Back")
 				break;
+			if (!isChildMenu(index))
+			{
+				system("cls");
+				std::cout << "----------" << m_fields[index]->getName() << "----------" << std::endl;
+			}
+			m_fields[index]->execute();
 		}
 		else
 			std::cout << "Invalid choice." << std::endl;
@@ -52,9 +57,26 @@ void Menu::run()
 void Menu::addSubMenu(Menu &&submenu)
 {
 	submenu.setParent(this);
+	m_childMenuField.push_back(m_fields.size());
 	auto submenuFieldPtr = std::make_unique<MenuField>(submenu.m_name, []() {});
 	submenuFieldPtr->setAction([&]() { submenu.run(); });
 	m_fields.push_back(std::move(submenuFieldPtr));
+}
+
+void Menu::removeMenuField(int index) 
+{ 
+	m_fields.erase(m_fields.begin() + index);
+	if (isChildMenu(index))
+	{
+		auto it = std::find(m_childMenuField.begin(), m_childMenuField.end(), index);
+		m_childMenuField.erase(it);
+	}
+}
+
+bool Menu::isChildMenu(int index)
+{
+	return std::find(m_childMenuField.begin(), m_childMenuField.end(), index)
+		!= m_childMenuField.end();
 }
 
 void Menu::setName2centr()
