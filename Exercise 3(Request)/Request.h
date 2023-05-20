@@ -9,17 +9,17 @@ class Request
 {
 private:
 	std::string m_destination;
-	int m_flyghtNumber;
+	std::string m_flyghtNumber;
 	FullName m_name;
 	Date m_date;
 public:
-	Request(const std::string &dest, const int flyNum, const FullName &name, const Date &date)
-		: m_destination(dest), m_date(date), m_flyghtNumber(flyNum), m_name(name) {}
-
-	void setDestination(const std::string &dest) { m_destination = dest; }
-	void setFlyghttNumber(const int num) { m_flyghtNumber = num; }
-	void setName(const FullName &name) { m_name = name; }
-	void setDate(const Date &date) { m_date = date; }
+	Request(const std::string &&dest, const std::string &&flyNum, const FullName &&name, const Date &date)
+		: m_destination(std::move(dest)), m_date(date), m_flyghtNumber(std::move(flyNum)), m_name(std::move(name)) {}
+	
+	bool setDestination(const std::string &&dest);
+	bool setFlyghttNumber(const std::string &&num);
+	bool setName(std::string &&name);
+	bool setDate(const Date &date);
 
 	friend std::ostream& operator<<(std::ostream &out, const Request &req);
 	

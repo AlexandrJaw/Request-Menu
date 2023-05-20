@@ -126,6 +126,7 @@
     <ClCompile Include="MenuField.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="ReqList.cpp" />
     <ClCompile Include="Request.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

@@ -38,6 +38,9 @@
     <ClCompile Include="MenuField.cpp">
       <Filter>Классы\Menu\MenuField</Filter>
     </ClCompile>
+    <ClCompile Include="ReqList.cpp">
+      <Filter>Классы\Request</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FulName.h">

@@ -21,6 +21,8 @@ public:
 		: m_day(day), m_month(month), m_week(week), m_year(year) {}
 	Date(const std::string &date, bool &isSucces);
 	
+	void Date::setFromString(const std::string &date, bool &isSucces);
+
 	const int getDay() { return m_day; }
 	const int getWeek() { return m_week; }
 	const int getMonth() { return m_month; }

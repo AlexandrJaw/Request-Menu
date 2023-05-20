@@ -4,26 +4,42 @@
 #include <memory>
 
 
+class Str
+{
+	std::string m_str;
+public:
+	Str(std::string &&str) : m_str(std::move(str)) {}
 
+	std::string&& getStr() { return std::move(m_str); }
+};
+
+class Str2
+{
+	std::unique_ptr<Str> m_str;
+public:
+	
+	void setStr()
+	{
+		std::string str = "Hello world!";
+
+		m_str = std::make_unique<Str>(std::move(str));
+	}
+
+	std::string getStr()
+	{
+		return m_str->getStr();
+	}
+};
 int main()
 {
-	int a = 0;
-	while (true)
-	{
-		std::cin >> a;
-		switch (a)
-		{
-		case 0: std::cout << a; break;
-		case 1: std::cout << a; break;
-		case 2: std::cout << a; break;
-		case 3: std::cout << a; break;
-		case 4: std::cout << a; break;
-		case 5: std::cout << a; break;
-		case 6: std::cout << a; break;
-		default:
-			break;
-		}
-	}
+	
+	Str2 str;
+	str.setStr();
+
+	std::cout << str.getStr() << std::endl;
+	
+
 
 	return 0;
 }
+
