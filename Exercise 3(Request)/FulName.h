@@ -18,8 +18,8 @@ public:
 	{
 		in.clear();
 		in.ignore(32000, '\n');
-		std::getline(in, name.m_firstName);
-		std::getline(in, name.m_lastName);
+		in >> name.m_firstName;
+		in >> name.m_lastName;
 	}
 };
 
