@@ -44,7 +44,13 @@ bool Request::setName( std::string &&name)
 	}
 	return false;
 }
-bool Request::setDate(const Date &date)
+bool Request::setDate(const std::string &sdate)
 { 
-	m_date = date;
+	bool issucces;
+	Date date(sdate, issucces);
+	if (issucces)
+	{
+		m_date = date;
+	}
+	return issucces;
 }

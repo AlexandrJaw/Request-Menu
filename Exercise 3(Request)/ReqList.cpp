@@ -3,27 +3,33 @@
 void ReqList::addRequest()
 {
 	std::string dest = "";
-	int numFly = 0;
-	FullName name;
+	std::string numFly = 0;
+	std::string name;
 	std::string sdate;
+
+	auto req = std::make_unique<Request>();
 
 	while (true)
 	{
 		cout << "¬ведите пункт назначени€: ";
 		cin >> dest;
+		req->setDestination(std::move(dest));
 
 		cout << "¬ведите номер рейса: ";
 		cin >> numFly;
+		req->setFlyghttNumber(std::move(numFly));
 
 		cout << "¬ведите ваши им€ фамилию через пробел: ";
 		cin >> name;
+		req->setName(std::move(name));
 
 		cout << "¬ведите желаемую дату вылета: ";
 		cin >> sdate;
+		req->setDate(std::move(sdate));
 	}
 
 
-	auto req = std::make_unique<Request>();
+	
 	m_reqlist.push_back(std::move(req));
 }
 
