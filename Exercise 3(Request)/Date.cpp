@@ -6,15 +6,15 @@ Date::Date(const std::string &date, bool &isSucces)
 }
 void Date::setFromString(const std::string &date, bool &isSucces)
 {
-	std::regex patern("^(0?[1-9]|[1-2]\\d|3[0-1]):(0?[1-9]|1[0-2]):\\d{2}$");
+	std::regex patern("^(0?[1-9]|[1-2]\\d|3[0-1])/(0?[1-9]|1[0-2])/\\d{2}$");
 	if (std::regex_match(date, patern))
 	{
 		std::stringstream buf;
 		buf << date;
 		buf >> m_day;
-		buf.ignore(1, ':');
+		buf.ignore(1, '/');
 		buf >> m_month;
-		buf.ignore(1, ':');
+		buf.ignore(1, '/');
 		buf >> m_year;
 		isSucces = true;
 	}
