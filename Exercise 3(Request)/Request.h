@@ -18,9 +18,14 @@ public:
 		: m_destination(std::move(dest)), m_date(date), m_flyghtNumber(std::move(flyNum)), m_name(std::move(name)) {}
 	
 	bool setDestination(const std::string &&dest);
-	bool setFlyghttNumber(const std::string &&num);
+	bool setFlyghtNumber(const std::string &&num);
 	bool setName(std::string &&name);
 	bool setDate(const std::string &sdate);
+
+	const std::string& getDestination() { return m_destination; }
+	const std::string& getFlyghtNumber() { return m_flyghtNumber; }
+	const FullName& getName() { return m_name; }
+	const Date& getDate() { return m_date; }
 
 	friend std::ostream& operator<<(std::ostream &out, const Request &req);
 	

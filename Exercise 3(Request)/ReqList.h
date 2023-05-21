@@ -4,6 +4,8 @@
 #include <memory>
 #include <iostream>
 
+constexpr int NUMBER_OF_DATA_FIELDS = 4;
+
 using std::cin;
 using std::cout;
 class ReqList

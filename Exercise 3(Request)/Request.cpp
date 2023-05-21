@@ -17,7 +17,7 @@ bool Request::setDestination(const std::string &&dest)
 	}
 	return false;
 }
-bool Request::setFlyghttNumber(const std::string &&num)
+bool Request::setFlyghtNumber(const std::string &&num)
 { 
 	std::regex patern("^[A-Z]{2,3}\d{3}$");
 	if (std::regex_match(num, patern))

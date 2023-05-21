@@ -33,7 +33,7 @@ public:
 
 	friend std::ostream& operator<<(std::ostream &out, const FullName &name)
 	{
-		out << name.m_firstName << '\t' << name.m_lastName;
+		out << name.m_firstName << ' ' << name.m_lastName;
 		return out;
 	}
 	friend std::istream& operator>>(std::istream &in, FullName &name)
