@@ -42,10 +42,15 @@ void Menu::run()
 			if (m_fields[index]->getName() == "Quit"
 				|| m_fields[index]->getName() == "Back")
 				break;
-			if (!isChildMenu(index))
+			if (isChildMenu(index))
 			{
 				system("cls");
 				std::cout << "----------" << m_fields[index]->getName() << "----------" << std::endl;
+			}
+			else
+			{
+				system("cls");
+				std::cout << ">>" << m_fields[index]->getName() << "<<" << std::endl;
 			}
 			m_fields[index]->execute();
 		}

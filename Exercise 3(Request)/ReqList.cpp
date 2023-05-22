@@ -12,9 +12,9 @@ bool isInputCorect(std::array<bool, NUMBER_OF_DATA_FIELDS> &flags) // Функция дл
 void ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 {
 	std::string dest = "";
-	std::string numFly = 0;
-	std::string name;
-	std::string sdate;
+	std::string numFly = "";
+	std::string name = "";
+	std::string sdate = "";
 
 	auto req = std::make_unique<Request>();
 

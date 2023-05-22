@@ -19,17 +19,17 @@ bool Request::setDestination(const std::string &&dest)
 }
 bool Request::setFlyghtNumber(const std::string &&num)
 { 
-	std::regex patern("^[A-Z]{2,3}\d{3}$");
+	std::regex patern("^[A-ZÀ-ß]{2,3}\\d{3}$");
 	if (std::regex_match(num, patern))
 	{
-		m_flyghtNumber = num;
+		m_flyghtNumber = std::move(num);
 		return true;
 	}
 	return false;
 }
 bool Request::setName( std::string &&name)
 { 
-	std::regex patern("^\p{Lu}\p{Ll}* \p{Lu}\p{Ll}*$");
+	std::regex patern("^\\p{Lu}\\p{Ll}* \\p{Lu}\\p{Ll}*$");
 	if (std::regex_match(name, patern))
 	{
 		FullName fullname;

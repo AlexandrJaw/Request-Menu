@@ -2,17 +2,21 @@
 #include "Menu.h"
 #include <exception>
 #include <list>
-#include "Request.h"
+#include "ReqList.h"
+#include <Windows.h>
 
 int main()
 {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
 	try
 	{
-		std::list<Request> requestList;
+		ReqList reqlist;
 		
 		Menu mainMenu;
 
-		auto option1 = std::make_unique <MenuField>("option 1", []() { system("pause"); });
+		auto option1 = std::make_unique <MenuField>("Добавить заявку", [&]() { reqlist.addRequest(); });
 		auto option2 = std::make_unique <MenuField>("option 2", []() {});
 		auto option3 = std::make_unique <MenuField>("option 3", []() {});
 
