@@ -11,12 +11,12 @@ void Menu::run()
 		if (m_parent == nullptr)
 		{
 			outField->setName("Quit");
-			outField->setAction([]() {});
+			outField->setAction([]() { return true; });
 		}
 		else
 		{
 			outField->setName("Back");
-			outField->setAction([]() {});
+			outField->setAction([]() { return true; });
 		}
 		this->addMenuField(std::move(outField));
 	}
@@ -42,17 +42,19 @@ void Menu::run()
 			if (m_fields[index]->getName() == "Quit"
 				|| m_fields[index]->getName() == "Back")
 				break;
+			std::string beginTitle = "";
+			std::string endTitle = "";
+
 			if (isChildMenu(index))
 			{
-				system("cls");
-				std::cout << "----------" << m_fields[index]->getName() << "----------" << std::endl;
+				beginTitle = endTitle = "----------";
 			}
 			else
 			{
-				system("cls");
-				std::cout << ">>" << m_fields[index]->getName() << "<<" << std::endl;
+				beginTitle = ">>";
+				endTitle = "<<";
 			}
-			m_fields[index]->execute();
+			m_fields[index]->execute(beginTitle,endTitle);
 		}
 		else
 			std::cout << "Invalid choice." << std::endl;
@@ -63,8 +65,8 @@ void Menu::addSubMenu(Menu &&submenu)
 {
 	submenu.setParent(this);
 	m_childMenuField.push_back(m_fields.size());
-	auto submenuFieldPtr = std::make_unique<MenuField>(submenu.m_name, []() {});
-	submenuFieldPtr->setAction([&]() { submenu.run(); });
+	auto submenuFieldPtr = std::make_unique<MenuField>(submenu.m_name, []() { return true; });
+	submenuFieldPtr->setAction([&]() { submenu.run(); return true; });
 	m_fields.push_back(std::move(submenuFieldPtr));
 }
 

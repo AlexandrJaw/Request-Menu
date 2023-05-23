@@ -7,15 +7,20 @@ class MenuField
 {
 private:
 	std::string m_name;
-	std::function<void()> m_action;
+	std::function<bool()> m_action;
 public:
-	MenuField(const std::string &name = "", std::function<void()> action = []() {})
+	///<summary>
+	///Функция уcтанавливаемая под поле меню должна возвращать значение типа bool.
+	///'false' если нужно повторить цикл (с выводом названия опции в шапке)
+	///и 'true' если повторять функцию не нужно.
+	///</summary>
+	MenuField(const std::string &name = "", std::function<bool()> action = []() { return true; })
 		: m_name(name), m_action(action) {}
 
 	void setName(const std::string &name) { m_name = name; }
-	void setAction(const std::function<void()>& action) { m_action = action; }
+	void setAction(const std::function<bool()>& action) { m_action = action; }
 	const std::string& getName() const { return m_name; }
-	void execute() const { m_action(); }
+	void execute(const std::string &beginTitle = "", const std::string &endTitle = "") const;
 	~MenuField() {}
 };
 

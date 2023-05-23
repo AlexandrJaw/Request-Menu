@@ -16,18 +16,18 @@ int main()
 		
 		Menu mainMenu;
 
-		auto option1 = std::make_unique <MenuField>("Добавить заявку", [&]() { reqlist.addRequest(); });
-		auto option2 = std::make_unique <MenuField>("option 2", []() {});
-		auto option3 = std::make_unique <MenuField>("option 3", []() {});
+		
+		auto option1 = std::make_unique <MenuField>("Добавить заявку", [&]() { return reqlist.addRequest(); });
+		auto option2 = std::make_unique <MenuField>("option 2", []() { return true; });
+		auto option3 = std::make_unique <MenuField>("option 3", []() { return true; });
 
 		mainMenu.addMenuField(std::move(option1));
 		mainMenu.addMenuField(std::move(option2));
 		mainMenu.addMenuField(std::move(option3));
 
-		//auto submenu = std::make_shared<Menu>("Submenu");
 		Menu submenu("Submenu");
 
-		auto suboption = std::make_unique<MenuField>("suboption", []() {});
+		auto suboption = std::make_unique<MenuField>("suboption", []() { return true; });
 
 		submenu.addMenuField(std::move(suboption));
 
