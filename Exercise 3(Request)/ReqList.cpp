@@ -25,6 +25,7 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 		std::cout << "INVALID INPUT" << std::endl;
 	
 	//Цикл проверки ввода
+	// TODO: Возможно можно огрганизовать следующую логику через цикл и класс std::any для избегания дублирования кода
 	if(!isInputsCorect(m_flags))
 	{
 		if (!m_flags[0])
@@ -32,7 +33,7 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 			cout << "Введите пункт назначения: ";
 			cin >> dest;
 			m_flags[0] = m_req->setDestination(std::move(dest));
-			if (!m_flags[0]) return false;
+			if (!m_flags[0]) return false; //Если ввод был некоректным, тогда нужно повторить цикл ввода с выводом при этом всего введённого до этого
 		}
 		else
 			std::cout << "Вы ввели пункт назначения: " << m_req->getDestination() << std::endl;
@@ -46,29 +47,34 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 		}
 		else
 			std::cout << "Вы ввели номер рейса: " << m_req->getFlyghtNumber() << std::endl;
+
 		if (!m_flags[2])
 		{
 			cout << "Введите ваши имя фамилию через пробел: ";
-			cin >> name;
+			std::getline(cin, name);
 			m_flags[2] = m_req->setName(std::move(name));
 			if (!m_flags[2]) return false;
 		}
 		else
 			std::cout << "Вы ввели ваши имя/фамилию: " << m_req->getName() << std::endl;
+
 		if (!m_flags[3])
 		{
 			cout << "Введите желаемую дату вылета в формате 'дд/мм/гг': ";
 			cin >> sdate;
 			m_flags[3] = m_req->setDate(std::move(sdate));
 			if (!m_flags[3]) return false;
+			return false; // Команда необходима для того что бы вывести в конце результат ввода пользователя
 		}
 		else
 			std::cout << "Вы ввели желаемую дату вылета: " << m_req->getDate() << std::endl;
 	}
+	system("pause");
+
 	m_reqlist.push_back(std::move(m_req));
 	m_flags.fill(false);
 	isFirstAddThisRequest = true;
-	return true;
+	return true; // Означет что весь ввод был коректным и повторять цикл ввода ненужно
 }
 
 bool ReqList::deleteRequest(int index)

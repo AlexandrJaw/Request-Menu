@@ -29,7 +29,7 @@ bool Request::setFlyghtNumber(const std::string &&num)
 }
 bool Request::setName( std::string &&name)
 { 
-	std::regex patern("^\\p{Lu}\\p{Ll}* \\p{Lu}\\p{Ll}*$");
+	std::regex patern(R"(^[A-ZÀ-ß][a-zà-ÿ]* [A-ZÀ-ß][a-zà-ÿ]*$)");
 	if (std::regex_match(name, patern))
 	{
 		FullName fullname;
