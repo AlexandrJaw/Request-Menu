@@ -22,11 +22,10 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 		isFirstAddThisRequest = false;
 	}
 	else
-		std::cout << "INVALID INPUT" << std::endl;
+		std::cout << "INVALID INPUT" << std::endl; // TODO: Это выводится в конце, хотя не должно
 	
 	//Цикл проверки ввода
-	// TODO: Возможно можно огрганизовать следующую логику через цикл и класс std::any для избегания дублирования кода
-	if(!isInputsCorect(m_flags))
+	if(!isInputsCorect(m_flags)) //TODO: Из-за этого условия не происходит вывод всего ввода в конце
 	{
 		if (!m_flags[0])
 		{
@@ -51,6 +50,7 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 		if (!m_flags[2])
 		{
 			cout << "Введите ваши имя фамилию через пробел: ";
+			cin.ignore();
 			std::getline(cin, name);
 			m_flags[2] = m_req->setName(std::move(name));
 			if (!m_flags[2]) return false;
@@ -63,8 +63,8 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 			cout << "Введите желаемую дату вылета в формате 'дд/мм/гг': ";
 			cin >> sdate;
 			m_flags[3] = m_req->setDate(std::move(sdate));
-			if (!m_flags[3]) return false;
-			return false; // Команда необходима для того что бы вывести в конце результат ввода пользователя
+			if (!m_flags[3]) return false; // TODO: Не выводит в конце результат ввода пользователя. Нужно исправить
+			return false; // Команда необходима для того что бы вывести в конце результат ввода пользователя 
 		}
 		else
 			std::cout << "Вы ввели желаемую дату вылета: " << m_req->getDate() << std::endl;
