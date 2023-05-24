@@ -66,7 +66,7 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 			if (!m_flags[2]) return false;
 		}
 		else
-			std::cout << " " << "3. Ваши имя/фамилию: " << m_req->getName() << std::endl;
+			std::cout << " " << "3. Ваши имя/фамилия: " << m_req->getName() << std::endl;
 
 		if (!m_flags[3])
 		{
@@ -81,7 +81,7 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 			return false; // Команда необходима для того что бы вывести в конце результат ввода пользователя 
 		}
 		else
-			std::cout << " " << "4. Желаемую дату вылета: " << m_req->getDate() << std::endl;
+			std::cout << " " << "4. Желаемая дата вылета: " << m_req->getDate() << std::endl;
 	}
 	system("pause");
 

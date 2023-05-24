@@ -25,7 +25,21 @@ void Date::setFromString(const std::string &date, bool &isSucces)
 }
 std::ostream& operator<<(std::ostream &out, const Date &date)
 {
-	out << date.m_day << '/' << date.m_month << '/' << date.m_year;
+	if (date.m_day < 10)
+		out << "0" << date.m_day << '/';
+	else
+		out << date.m_day << '/';
+
+	if(date.m_month < 10)
+		out << "0" << date.m_month << '/';
+	else
+		out << date.m_month << '/';
+
+	if(date.m_year < 10)
+		out << "0" << date.m_year;
+	else
+		out << date.m_year;
+
 	return out;
 }
 
