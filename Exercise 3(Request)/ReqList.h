@@ -24,6 +24,8 @@ public:
 	bool addRequest();
 	
 	bool deleteRequest(int index);
+
+	bool showAllRequests();
 	
 };
 

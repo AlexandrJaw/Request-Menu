@@ -77,6 +77,16 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 	return true; // Означет что весь ввод был коректным и повторять цикл ввода ненужно
 }
 
+bool ReqList::showAllRequests()
+{
+	cout << "Пункт назначения" << '\t' << "Номер рейса" << '\t' << "ФИО пасажира" << '\t' << "Желаемая дата вылета" << std::endl;
+	for (const auto &req : m_reqlist)
+	{
+		cout << req->getDestination() << '\t' << req->getFlyghtNumber() << '\t' << req->getName() << '\t' << req->getDate() << std::endl;
+	}
+	return true;
+}
+
 bool ReqList::deleteRequest(int index)
 {
 	auto it = m_reqlist.begin();
