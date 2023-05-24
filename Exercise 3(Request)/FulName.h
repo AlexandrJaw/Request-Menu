@@ -26,6 +26,7 @@ public:
 		m_firstName = std::move(name.m_firstName);
 		m_lastName = std::move(name.m_lastName);
 		m_secondName = std::move(name.m_secondName);
+		return *this;
 	}
 
 	void setFirstName(const std::string &&first) { m_firstName = std::move(first); }

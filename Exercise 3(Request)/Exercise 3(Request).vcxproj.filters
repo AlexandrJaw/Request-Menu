@@ -21,6 +21,9 @@
     <Filter Include="Классы\Request">
       <UniqueIdentifier>{5d2ccb22-ef05-4582-b276-339ded8920ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Классы\Table">
+      <UniqueIdentifier>{1e7ed527-1b6c-4290-82cd-a39d06feb8db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -41,6 +44,9 @@
     <ClCompile Include="ReqList.cpp">
       <Filter>Классы\Request</Filter>
     </ClCompile>
+    <ClCompile Include="Table.cpp">
+      <Filter>Классы\Table</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FulName.h">
@@ -60,6 +66,9 @@
     </ClInclude>
     <ClInclude Include="ReqList.h">
       <Filter>Классы\Request</Filter>
+    </ClInclude>
+    <ClInclude Include="Table.h">
+      <Filter>Классы\Table</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

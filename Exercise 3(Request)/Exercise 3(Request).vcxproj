@@ -129,6 +129,7 @@
     <ClCompile Include="ReqList.cpp" />
     <ClCompile Include="Request.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Table.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MenuField.h" />
@@ -137,6 +138,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="ReqList.h" />
     <ClInclude Include="Request.h" />
+    <ClInclude Include="Table.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
