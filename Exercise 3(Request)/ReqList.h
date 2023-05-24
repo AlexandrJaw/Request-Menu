@@ -17,9 +17,10 @@ private:
 	std::unique_ptr<Request> m_req;
 	std::array<bool, NUMBER_OF_DATA_FIELDS> m_flags;
 	bool isFirstAddThisRequest;
+	bool isLastRoundOfInput;
 
 public:
-	ReqList() : isFirstAddThisRequest(true) { m_flags.fill(false); }
+	ReqList() : isFirstAddThisRequest(true), isLastRoundOfInput(false) { m_flags.fill(false); }
 
 	bool addRequest();
 	

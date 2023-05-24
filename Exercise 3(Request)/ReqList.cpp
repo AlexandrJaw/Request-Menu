@@ -21,11 +21,11 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 		m_req = std::make_unique<Request>(); 
 		isFirstAddThisRequest = false;
 	}
-	else
-		std::cout << "INVALID INPUT" << std::endl; // TODO: Это выводится в конце, хотя не должно
+	else if(!isLastRoundOfInput)
+		std::cout << "INVALID INPUT" << std::endl;
 	
 	//Цикл проверки ввода
-	if(!isInputsCorect(m_flags)) //TODO: Из-за этого условия не происходит вывод всего ввода в конце
+	if(!isInputsCorect(m_flags) || isLastRoundOfInput)
 	{
 		if (!m_flags[0])
 		{
@@ -63,7 +63,9 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 			cout << "Введите желаемую дату вылета в формате 'дд/мм/гг': ";
 			cin >> sdate;
 			m_flags[3] = m_req->setDate(std::move(sdate));
-			if (!m_flags[3]) return false; // TODO: Не выводит в конце результат ввода пользователя. Нужно исправить
+			if (!m_flags[3]) return false;
+
+			isLastRoundOfInput = true;
 			return false; // Команда необходима для того что бы вывести в конце результат ввода пользователя 
 		}
 		else
@@ -73,7 +75,10 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 
 	m_reqlist.push_back(std::move(m_req));
 	m_flags.fill(false);
+
 	isFirstAddThisRequest = true;
+	isLastRoundOfInput = false;
+
 	return true; // Означет что весь ввод был коректным и повторять цикл ввода ненужно
 }
 
@@ -84,6 +89,7 @@ bool ReqList::showAllRequests()
 	{
 		cout << req->getDestination() << '\t' << req->getFlyghtNumber() << '\t' << req->getName() << '\t' << req->getDate() << std::endl;
 	}
+	system("pause");
 	return true;
 }
 
