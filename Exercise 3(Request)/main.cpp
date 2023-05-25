@@ -19,7 +19,7 @@ int main()
 		
 		auto option1 = std::make_unique <MenuField>("Добавить заявку", [&]() { return reqlist.addRequest(); });
 		auto option2 = std::make_unique <MenuField>("Посмотреть все заявки", [&]() { return reqlist.showAllRequests(); });
-		auto option3 = std::make_unique <MenuField>("option 3", []() { return true; });
+		auto option3 = std::make_unique <MenuField>("Ввести тестовые данные", [&]() { return reqlist.addTestData(); });
 
 		mainMenu.addMenuField(std::move(option1));
 		mainMenu.addMenuField(std::move(option2));

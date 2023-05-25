@@ -10,11 +10,11 @@ Table& Table::operator<<(const std::string &cell)
 	return *this;
 }
 
-Table& Table::nextLine()
+Table& nxln(Table& table)
 {
-	m_table.push_back(std::vector<std::string>());
-	++m_activeLine;
-	return *this;
+	table.addLine();
+	table.shiftPtrLine();
+	return table;
 }
 
 std::ostream& operator<<(std::ostream &out, const Table &table)

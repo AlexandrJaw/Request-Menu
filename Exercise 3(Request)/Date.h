@@ -45,20 +45,22 @@ public:
 template<class T>
 T& outDate(T &out, const Date &date)
 {
+	std::string sout = "";
 	if (date.m_day < 10)
-		out << "0" << date.m_day << '/';
+		sout += "0" + std::to_string(date.m_day) + "/";
 	else
-		out << date.m_day << '/';
+		sout += std::to_string(date.m_day) + "/";
 
 	if (date.m_month < 10)
-		out << "0" << date.m_month << '/';
+		sout += "0" + std::to_string(date.m_month) + "/";
 	else
-		out << date.m_month << '/';
+		sout += std::to_string(date.m_month) + "/";
 
 	if (date.m_year < 10)
-		out << "0" << date.m_year;
+		sout += "0" + std::to_string(date.m_year);
 	else
-		out << date.m_year;
+		sout += std::to_string(date.m_year);
 
+	out << sout;
 	return out;
 }

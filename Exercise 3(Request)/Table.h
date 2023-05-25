@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <functional>
 
 class Table
 {
@@ -14,10 +15,13 @@ public:
 	Table(Table &table) { m_table = table.m_table; }
 	Table(Table &&table) { m_table = std::move(table.m_table); }
 
-	Table& nextLine();
+	void addLine() { m_table.push_back(std::vector<std::string>()); }
+	void shiftPtrLine() { ++m_activeLine; }
 
 	Table& operator<<(const std::string &cell);
 	Table& operator<<(Table &table) { return table; }
+	Table& operator<<(std::function<Table&(Table&)> fcn) { return fcn(*this); }
+
 	friend std::ostream& operator<<(std::ostream &out, const Table &table);
 
 	Table& operator=(Table &&table)
@@ -30,3 +34,4 @@ public:
 	}
 };
 
+Table& nxln(Table &table);

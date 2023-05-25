@@ -100,11 +100,11 @@ bool ReqList::addTestData()
 	bool suck;
 	auto req = std::make_unique<Request>("Kiev", "KV123", FullName("Sasha", "Javorsky"), Date("26/05/23", suck));
 	m_reqlist.push_back(std::move(req));
-	auto req = std::make_unique<Request>("Amsterdam", "AMS753", FullName("Heinz", "Stainmeier"), Date("30/05/23", suck));
+	req = std::make_unique<Request>("Amsterdam", "AMS753", FullName("Heinz", "Stainmeier"), Date("30/05/23", suck));
 	m_reqlist.push_back(std::move(req));
-	auto req = std::make_unique<Request>("Lviv", "LV954", FullName("Vuyko", "Boyko"), Date("27/05/23", suck));
+	req = std::make_unique<Request>("Lviv", "LV954", FullName("Vuyko", "Boyko"), Date("27/05/23", suck));
 	m_reqlist.push_back(std::move(req));
-	auto req = std::make_unique<Request>("New York", "NY952", FullName("Edgar", "Word"), Date("30/05/23", suck));
+	req = std::make_unique<Request>("New York", "NY952", FullName("Edgar", "Word"), Date("30/05/23", suck));
 	m_reqlist.push_back(std::move(req));
 
 	return true;
@@ -113,12 +113,12 @@ bool ReqList::addTestData()
 bool ReqList::showAllRequests()
 {
 	Table table;
-	table << "Пункт назначения" <<  "Номер рейса" << "ФИО пасажира" << "Желаемая дата вылета" << table.nextLine();
+	table << "Пункт назначения" <<  "Номер рейса" << "ФИО пасажира" << "Желаемая дата вылета" << nxln;
 	for (const auto &req : m_reqlist)
 	{
-		table << req->getDestination() << req->getFlyghtNumber() << req->getName() << req->getDate() << table.nextLine();
+		table << req->getDestination() << req->getFlyghtNumber() << req->getName() << req->getDate() << nxln;
 	}
-	//std::cout << table;
+	std::cout << table;
 	system("pause");
 	return true;
 }
