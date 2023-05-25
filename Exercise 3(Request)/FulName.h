@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include "Table.h"
 
 class FullName
 {
@@ -36,6 +37,11 @@ public:
 	{
 		out << name.m_firstName << ' ' << name.m_lastName;
 		return out;
+	}
+	friend Table& operator<<(Table &table, const FullName &name)
+	{
+		table << std::string(name.m_firstName + " " + name.m_lastName);
+		return table;
 	}
 	friend std::istream& operator>>(std::istream &in, FullName &name)
 	{

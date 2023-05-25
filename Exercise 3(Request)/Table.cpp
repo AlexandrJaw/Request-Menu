@@ -1,6 +1,8 @@
 #include "Table.h"
+#include <algorithm>
 
-Table& Table::operator<<(std::string &&cell)
+
+Table& Table::operator<<(const std::string &cell)
 {
 	if(m_table.size() == 0)
 		m_table.push_back(std::vector<std::string>());
@@ -19,11 +21,34 @@ std::ostream& operator<<(std::ostream &out, const Table &table)
 {
 	auto copyTable = table.m_table;
 
+	int maxSizeRow = 0;
+	for (const auto &row : copyTable)
+		if (maxSizeRow < row.size())
+			maxSizeRow = row.size();
+
 	int maxLengthStr = 0;
-	for(int i(0); i < copyTable.size(); ++i)
-		for (int j(0); j < copyTable.at(i).size(); ++j)
+	for (int j(0); j < maxSizeRow; ++j)
+	{
+		for (int i(0); i < copyTable.size(); ++i)
 		{
-			if(maxLengthStr < copyTable[i][j].size())
-				maxLengthStr = copyTable[i][j].size();   //TODO: Доделать выравнивание таблицы
+			if (j < copyTable.at(i).size())
+				if (maxLengthStr < copyTable[i][j].size())
+					maxLengthStr = copyTable[i][j].size();
 		}
+
+		for (int i(0); i < copyTable.size(); ++i)
+		{
+			copyTable[i][j].append(" ", (maxLengthStr + 1) - copyTable[i][j].size());
+		}
+	}
+
+	for (const auto &col : copyTable)
+	{
+		for (const auto &row : col)
+		{
+			out << row;
+		}
+		out << std::endl;
+	}
+	return out;
 }

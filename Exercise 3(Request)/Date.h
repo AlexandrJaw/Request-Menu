@@ -4,6 +4,7 @@
 #include <sstream>
 #include <exception>
 #include <iostream>
+#include "Table.h"
 
 class Date
 {
@@ -34,6 +35,30 @@ public:
 	const int getAllYear();
 
 	friend std::ostream& operator<<(std::ostream &out, const Date &date);
+	friend Table& operator<<(Table &table, const Date &date);
+
+	template<class T>
+	friend T& outDate(T &out, const Date &date);
 	
 };
 
+template<class T>
+T& outDate(T &out, const Date &date)
+{
+	if (date.m_day < 10)
+		out << "0" << date.m_day << '/';
+	else
+		out << date.m_day << '/';
+
+	if (date.m_month < 10)
+		out << "0" << date.m_month << '/';
+	else
+		out << date.m_month << '/';
+
+	if (date.m_year < 10)
+		out << "0" << date.m_year;
+	else
+		out << date.m_year;
+
+	return out;
+}

@@ -16,8 +16,8 @@ public:
 
 	Table& nextLine();
 
-	Table& operator<<(std::string &&cell);
-	Table& operator<<(Table &table) {}
+	Table& operator<<(const std::string &cell);
+	Table& operator<<(Table &table) { return table; }
 	friend std::ostream& operator<<(std::ostream &out, const Table &table);
 
 	Table& operator=(Table &&table)

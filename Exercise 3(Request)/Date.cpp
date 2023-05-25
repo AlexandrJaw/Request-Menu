@@ -6,7 +6,7 @@ Date::Date(const std::string &date, bool &isSucces)
 }
 void Date::setFromString(const std::string &date, bool &isSucces)
 {
-	std::regex patern("^(0?[1-9]|[1-2]\\d|3[0-1])/(0?[1-9]|1[0-2])/\\d{2}$");
+	std::regex patern("^(0?[1-9]|[1-2]\\d|3[0-1])/(0?[1-9]|1[0-2])/(0?[1-9]|\\d{2})$");
 	if (std::regex_match(date, patern))
 	{
 		std::stringstream buf;
@@ -25,22 +25,12 @@ void Date::setFromString(const std::string &date, bool &isSucces)
 }
 std::ostream& operator<<(std::ostream &out, const Date &date)
 {
-	if (date.m_day < 10)
-		out << "0" << date.m_day << '/';
-	else
-		out << date.m_day << '/';
+	return outDate(out, date);
+}
 
-	if(date.m_month < 10)
-		out << "0" << date.m_month << '/';
-	else
-		out << date.m_month << '/';
-
-	if(date.m_year < 10)
-		out << "0" << date.m_year;
-	else
-		out << date.m_year;
-
-	return out;
+Table& operator<<(Table &table, const Date &date)
+{
+	return outDate(table, date);
 }
 
 const int Date::getAllDay()

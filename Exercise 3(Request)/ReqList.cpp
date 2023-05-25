@@ -97,10 +97,11 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 
 bool ReqList::showAllRequests()
 {
-	cout << std::setw(10) << "Пункт назначения" << std::setw(10) << "Номер рейса" << std::setw(10) << "ФИО пасажира" << std::setw(10) << "Желаемая дата вылета" << std::endl;
+	Table table;
+	table << "Пункт назначения" <<  "Номер рейса" << "ФИО пасажира" << "Желаемая дата вылета" << table.nextLine();
 	for (const auto &req : m_reqlist)
 	{
-		cout << req->getDestination() << '\t' << req->getFlyghtNumber() << '\t' << req->getName() << '\t' << req->getDate() << std::endl;
+		table << req->getDestination() << req->getFlyghtNumber() << req->getName() << req->getDate() << table.nextLine();
 	}
 	system("pause");
 	return true;

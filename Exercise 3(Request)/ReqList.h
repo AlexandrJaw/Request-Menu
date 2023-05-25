@@ -4,6 +4,7 @@
 #include <memory>
 #include <iostream>
 #include <array>
+#include "Table.h"
 
 constexpr int NUMBER_OF_DATA_FIELDS = 4;
 
