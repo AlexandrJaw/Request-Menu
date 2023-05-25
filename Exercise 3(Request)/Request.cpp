@@ -9,7 +9,7 @@ std::ostream& operator<<(std::ostream &out, const Request &req)
 
 bool Request::setDestination(const std::string &&dest)
 { 
-	std::regex patern("^[A-ZÀ-ß][a-zà-ÿ]* ?([A-ZÀ-ß][a-zà-ÿ]*)*$");
+	std::regex patern("^[A-ZÀ-ß][a-zà-ÿ]*( [A-ZÀ-ß][a-zà-ÿ]*)*$");
 	if (std::regex_match(dest, patern))
 	{
 		m_destination = std::move(dest);
