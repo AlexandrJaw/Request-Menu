@@ -95,6 +95,21 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 	return true; // Означет что весь ввод был коректным и повторять цикл ввода ненужно
 }
 
+bool ReqList::addTestData()
+{
+	bool suck;
+	auto req = std::make_unique<Request>("Kiev", "KV123", FullName("Sasha", "Javorsky"), Date("26/05/23", suck));
+	m_reqlist.push_back(std::move(req));
+	auto req = std::make_unique<Request>("Amsterdam", "AMS753", FullName("Heinz", "Stainmeier"), Date("30/05/23", suck));
+	m_reqlist.push_back(std::move(req));
+	auto req = std::make_unique<Request>("Lviv", "LV954", FullName("Vuyko", "Boyko"), Date("27/05/23", suck));
+	m_reqlist.push_back(std::move(req));
+	auto req = std::make_unique<Request>("New York", "NY952", FullName("Edgar", "Word"), Date("30/05/23", suck));
+	m_reqlist.push_back(std::move(req));
+
+	return true;
+}
+
 bool ReqList::showAllRequests()
 {
 	Table table;
@@ -103,6 +118,7 @@ bool ReqList::showAllRequests()
 	{
 		table << req->getDestination() << req->getFlyghtNumber() << req->getName() << req->getDate() << table.nextLine();
 	}
+	//std::cout << table;
 	system("pause");
 	return true;
 }

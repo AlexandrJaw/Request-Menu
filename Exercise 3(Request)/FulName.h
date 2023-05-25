@@ -10,7 +10,8 @@ private:
 	std::string m_secondName;
 	std::string m_lastName;
 public:
-	FullName() : m_firstName(""), m_secondName(""), m_lastName("") {}
+	FullName(const std::string &firstName = "", const std::string &lastName = "", const std::string &secondName = "")
+		: m_firstName(firstName), m_lastName(lastName), m_secondName(secondName) {}
 	FullName(const FullName &name) 
 		: m_firstName(name.m_firstName)
 		, m_secondName(name.m_secondName)

@@ -24,6 +24,8 @@ public:
 	ReqList() : isFirstAddThisRequest(true), isLastRoundOfInput(false) { m_flags.fill(false); }
 
 	bool addRequest();
+
+	bool addTestData();
 	
 	bool deleteRequest(int index);
 

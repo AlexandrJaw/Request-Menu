@@ -38,7 +38,8 @@ std::ostream& operator<<(std::ostream &out, const Table &table)
 
 		for (int i(0); i < copyTable.size(); ++i)
 		{
-			copyTable[i][j].append(" ", (maxLengthStr + 1) - copyTable[i][j].size());
+			if (j < copyTable.at(i).size())
+				copyTable[i][j].append(" ", (maxLengthStr + 1) - copyTable[i][j].size());
 		}
 	}
 
