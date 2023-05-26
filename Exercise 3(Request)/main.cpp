@@ -16,22 +16,23 @@ int main()
 		
 		Menu mainMenu;
 
-		
-		auto option1 = std::make_unique <MenuField>("Добавить заявку", [&]() { return reqlist.addRequest(); });
-		auto option2 = std::make_unique <MenuField>("Посмотреть все заявки", [&]() { return reqlist.showAllRequests(); });
-		auto option3 = std::make_unique <MenuField>("Ввести тестовые данные", [&]() { return reqlist.addTestData(); });
+		auto option1 = std::make_unique <MenuField>("Показать все заявки", [&]() { return reqlist.showAllRequests(); });
 
 		mainMenu.addMenuField(std::move(option1));
-		mainMenu.addMenuField(std::move(option2));
-		mainMenu.addMenuField(std::move(option3));
 
-		Menu submenu("Submenu");
+		Menu submenu("Добавление заявок");
 
-		auto suboption = std::make_unique<MenuField>("suboption", []() { return true; });
+		auto suboption1 = std::make_unique<MenuField>("Добавить новую заявку", [&]() { return reqlist.addRequest(); });
+		auto suboption2 = std::make_unique<MenuField>("Ввести тестовые данные", [&]() { return reqlist.addTestData(); });
 
-		submenu.addMenuField(std::move(suboption));
+		submenu.addMenuField(std::move(suboption1));
+		submenu.addMenuField(std::move(suboption2));
 
 		mainMenu.addSubMenu(std::move(submenu));
+
+		auto option2 = std::make_unique<MenuField>("Удалить заявку", [&]() { return reqlist.deleteRequest(); });
+
+		mainMenu.addMenuField(std::move(option2));
 
 		mainMenu.run();
 		

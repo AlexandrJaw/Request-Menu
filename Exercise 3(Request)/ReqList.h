@@ -14,20 +14,24 @@ class ReqList
 {
 private:
 	std::list<std::unique_ptr<Request>> m_reqlist;
+public:
+	ReqList() : isFirstAddThisRequest(true), isLastRoundOfInput(false), isFirstTryDeleteThisReq(true) { m_flags.fill(false); }
 
+private:
 	std::unique_ptr<Request> m_req;
 	std::array<bool, NUMBER_OF_DATA_FIELDS> m_flags;
 	bool isFirstAddThisRequest;
 	bool isLastRoundOfInput;
-
 public:
-	ReqList() : isFirstAddThisRequest(true), isLastRoundOfInput(false) { m_flags.fill(false); }
-
 	bool addRequest();
 
+public:
 	bool addTestData();
-	
-	bool deleteRequest(int index);
+
+private:
+	bool isFirstTryDeleteThisReq;
+public:
+	bool deleteRequest();
 
 	bool showAllRequests();
 	

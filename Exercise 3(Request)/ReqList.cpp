@@ -43,7 +43,7 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 			if (!m_flags[0]) return false; //Если ввод был некоректным, тогда нужно повторить цикл ввода с выводом при этом всего введённого до этого
 		}
 		else
-			std::cout << " " << "1. Пункт назначения: " << m_req->getDestination() << std::endl;
+			std::cout << " " << "1. Пункт назначения: " << '\t' << m_req->getDestination() << std::endl;
 
 		if (!m_flags[1])
 		{
@@ -55,7 +55,7 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 			if (!m_flags[1]) return false;
 		}
 		else
-			std::cout << " " << "2. Номер рейса: " << m_req->getFlyghtNumber() << std::endl;
+			std::cout << " " << "2. Номер рейса: " << '\t' << m_req->getFlyghtNumber() << std::endl;
 
 		if (!m_flags[2])
 		{
@@ -67,7 +67,7 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 			if (!m_flags[2]) return false;
 		}
 		else
-			std::cout << " " << "3. Ваши имя/фамилия: " << m_req->getName() << std::endl;
+			std::cout << " " << "3. Ваши имя/фамилия: " << '\t' << m_req->getName() << std::endl;
 
 		if (!m_flags[3])
 		{
@@ -82,7 +82,7 @@ bool ReqList::addRequest() // Метод добавления новой заявки на авиабилет
 			return false; // Команда необходима для того что бы вывести в конце результат ввода пользователя 
 		}
 		else
-			std::cout << " " << "4. Желаемая дата вылета: " << m_req->getDate() << std::endl;
+			std::cout << " " << "4. Желаемая дата вылета: " << '\t' << m_req->getDate() << std::endl;
 	}
 	system("pause");
 
@@ -112,21 +112,50 @@ bool ReqList::addTestData()
 
 bool ReqList::showAllRequests()
 {
+	if (m_reqlist.size() == 0)
+	{
+		std::cout << "Вы не ввели ни одной заявки." << std::endl;
+		system("pause");
+		return true;
+	}
 	Table table;
-	table << "Пункт назначения" <<  "Номер рейса" << "ФИО пасажира" << "Желаемая дата вылета" << nxln;
+	table << "№" << "Пункт назначения" <<  "Номер рейса" << "ФИО пасажира" << "Желаемая дата вылета" << nxln;
+	int index = 1;
 	for (const auto &req : m_reqlist)
 	{
-		table << req->getDestination() << req->getFlyghtNumber() << req->getName() << req->getDate() << nxln;
+		table << std::to_string(index) << req->getDestination() << req->getFlyghtNumber() << req->getName() << req->getDate() << nxln;
+		++index;
 	}
 	std::cout << table;
 	system("pause");
 	return true;
 }
 
-bool ReqList::deleteRequest(int index)
+bool ReqList::deleteRequest()
 {
-	auto it = m_reqlist.begin();
-	std::advance(it, index);
-	m_reqlist.erase(it);
-	return true;
+	if (!isFirstTryDeleteThisReq)
+		std::cout << "IVALID INPUT" << std::endl;
+
+	std::cout << "Введите номер заявки которую хотите удалить: ";
+	int index = 0;
+	if (cin.peek() == '\n')
+		cin.ignore();
+	cin.clear();
+	cin >> index;
+	--index;
+	if (index >= 0 && index < m_reqlist.size())
+	{
+		auto it = m_reqlist.begin();
+		std::advance(it, index);
+		m_reqlist.erase(it);
+		std::cout << "Заявка удалена." << std::endl;
+		system("pause");
+		isFirstTryDeleteThisReq = true;
+		return true;
+	}
+	else
+	{
+		isFirstTryDeleteThisReq = false;
+		return false;
+	}
 }

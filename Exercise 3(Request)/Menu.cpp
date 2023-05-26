@@ -28,7 +28,7 @@ void Menu::run()
 		std::cout << m_name << std::endl;
 		for (int i(0); i < m_fields.size(); ++i)
 		{
-			std::cout << i << ". " << m_fields[i]->getName() << std::endl;
+			std::cout << i + 1 << ". " << m_fields[i]->getName() << std::endl;
 		}
 		
 		char choice = 0;
@@ -37,15 +37,15 @@ void Menu::run()
 		
 		int index = choice - '0';
 		
-		if (index >= 0 && index < m_fields.size())
+		if (index > 0 && index <= m_fields.size())
 		{
-			if (m_fields[index]->getName() == "Quit"
-				|| m_fields[index]->getName() == "Back")
+			if (m_fields[index - 1]->getName() == "Quit"
+				|| m_fields[index - 1]->getName() == "Back")
 				break;
 			std::string beginTitle = "";
 			std::string endTitle = "";
 
-			if (isChildMenu(index))
+			if (isChildMenu(index - 1))
 			{
 				beginTitle = endTitle = "----------";
 			}
@@ -54,7 +54,7 @@ void Menu::run()
 				beginTitle = ">>";
 				endTitle = "<<";
 			}
-			m_fields[index]->execute(beginTitle,endTitle);
+			m_fields[index - 1]->execute(beginTitle,endTitle);
 		}
 		else
 			std::cout << "Invalid choice." << std::endl;

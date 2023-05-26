@@ -4,52 +4,65 @@
 
 Table& Table::operator<<(const std::string &cell)
 {
-	if(m_table.size() == 0)
-		m_table.push_back(std::vector<std::string>());
-	m_table.at(m_activeLine).push_back(cell);
+	if (m_rawTable.size() == 0 || m_nxlnFlag)
+	{
+		m_rawTable.push_back(std::vector<std::string>());
+		m_nxlnFlag = false;
+	}
+	m_rawTable.at(m_activeLine).push_back(cell);
 	return *this;
 }
 
 Table& nxln(Table& table)
 {
-	table.addLine();
+	table.setnxlnFlagT();
 	table.shiftPtrLine();
 	return table;
 }
 
 std::ostream& operator<<(std::ostream &out, const Table &table)
 {
-	auto copyTable = table.m_table;
+	auto finishedTable = table.m_rawTable;
 
 	int maxSizeRow = 0;
-	for (const auto &row : copyTable)
+	for (const auto &row : finishedTable)
 		if (maxSizeRow < row.size())
 			maxSizeRow = row.size();
 
-	int maxLengthStr = 0;
 	for (int j(0); j < maxSizeRow; ++j)
 	{
-		for (int i(0); i < copyTable.size(); ++i)
+		int maxLengthStr = 0;
+		for (int i(0); i < finishedTable.size(); ++i)
 		{
-			if (j < copyTable.at(i).size())
-				if (maxLengthStr < copyTable[i][j].size())
-					maxLengthStr = copyTable[i][j].size();
+			if (j < finishedTable.at(i).size())
+				if (maxLengthStr < finishedTable[i][j].size())
+					maxLengthStr = finishedTable[i][j].size();
 		}
 
-		for (int i(0); i < copyTable.size(); ++i)
+		for (int i(0); i < finishedTable.size(); ++i)
 		{
-			if (j < copyTable.at(i).size())
-				copyTable[i][j].append(" ", (maxLengthStr + 1) - copyTable[i][j].size());
+			if (j < finishedTable.at(i).size())
+			{
+				finishedTable[i][j].append(maxLengthStr + 1 - finishedTable[i][j].size(), ' ');
+				finishedTable[i][j] += '|';
+			}
 		}
 	}
 
-	for (const auto &col : copyTable)
+	int strSizeRow = 0;
+	for (const auto &col : finishedTable[0])
+		strSizeRow += col.size();
+
+	out << std::string(strSizeRow, '-') << std::endl;
+
+	for (const auto &col : finishedTable)
 	{
 		for (const auto &row : col)
 		{
 			out << row;
 		}
 		out << std::endl;
+		out << std::string(strSizeRow, '-') << std::endl;
 	}
 	return out;
 }

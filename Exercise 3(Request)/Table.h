@@ -8,14 +8,16 @@
 class Table
 {
 private:
-	std::vector<std::vector<std::string>> m_table;
+	std::vector<std::vector<std::string>> m_rawTable;
 	int m_activeLine;
+	bool m_nxlnFlag;
 public:
-	Table() : m_activeLine(0) {}
-	Table(Table &table) { m_table = table.m_table; }
-	Table(Table &&table) { m_table = std::move(table.m_table); }
+	Table() : m_activeLine(0), m_nxlnFlag(true) {}
+	Table(Table &table) { m_rawTable = table.m_rawTable; }
+	Table(Table &&table) { m_rawTable = std::move(table.m_rawTable); }
 
-	void addLine() { m_table.push_back(std::vector<std::string>()); }
+	void setnxlnFlagT() { m_nxlnFlag = true; }
+	void setnxlnFlagF() { m_nxlnFlag = false; }
 	void shiftPtrLine() { ++m_activeLine; }
 
 	Table& operator<<(const std::string &cell);
@@ -29,7 +31,7 @@ public:
 		if (this == &table)
 			return *this;
 
-		m_table = std::move(table.m_table);
+		m_rawTable = std::move(table.m_rawTable);
 		return *this;
 	}
 };
